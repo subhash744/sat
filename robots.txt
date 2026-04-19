@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sat-gilt.vercel.app/sitemap.xml
