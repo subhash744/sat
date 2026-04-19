@@ -8,519 +8,182 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
-        /* Reset & Base */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg-primary: #0d0d0d;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #141414;
-            --accent-red: #c8102e;
-            --accent-gold: #d4af37;
-            --accent-green: #22c55e;
-            --text-primary: #ffffff;
-            --text-secondary: #a3a3a3;
-            --text-muted: #737373;
+            --bg-primary: #0d0d0d; --bg-secondary: #1a1a1a; --bg-card: #141414;
+            --accent-red: #c8102e; --accent-gold: #d4af37; --accent-green: #22c55e;
+            --text-primary: #ffffff; --text-secondary: #a3a3a3; --text-muted: #737373;
             --border-color: #262626;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary);
+            line-height: 1.6; min-height: 100vh;
         }
-
-        h1, h2, h3, .logo {
-            font-family: 'DM Serif Display', serif;
-        }
-
+        h1, h2, h3, .logo { font-family: 'DM Serif Display', serif; }
+        
         /* Navbar */
         .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
+            padding: 1rem 4%; display: flex; justify-content: space-between; align-items: center;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--accent-red);
-        }
-
+        .logo { font-size: 1.5rem; color: var(--text-primary); text-decoration: none; }
+        .logo span { color: var(--accent-red); }
         .subscribe-btn {
-            background: var(--accent-red);
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1.25rem;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: background 0.2s;
+            background: var(--accent-red); color: white; text-decoration: none;
+            padding: 0.5rem 1.25rem; border-radius: 4px; font-weight: 500; font-size: 0.875rem;
         }
-
-        .subscribe-btn:hover {
-            background: #a00d26;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 4%;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: none;
-            padding: 3rem 0;
-            background: linear-gradient(90deg, rgba(20,20,20,0.9) 0%, rgba(20,20,20,0.4) 100%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero.active {
-            display: block;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-thumbnail {
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .hero-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .badge-row {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .badge-featured {
-            background: var(--accent-red);
-            color: white;
-        }
-
-        .badge-category {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .hero-title {
-            font-size: clamp(1.75rem, 4vw, 3rem);
-            line-height: 1.2;
-            color: var(--text-primary);
-        }
-
-        .hero-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            max-width: 500px;
-        }
-
-        .hero-meta {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
+        .subscribe-btn:hover { background: #a00d26; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 4%; }
+        
+        /* Hero */
+        .hero { display: none; padding: 3rem 0; background: linear-gradient(90deg, rgba(20,20,20,0.9) 0%, rgba(20,20,20,0.4) 100%); border-bottom: 1px solid var(--border-color); }
+        .hero.active { display: block; }
+        .hero-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center; }
+        .hero-thumbnail { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .hero-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-info { display: flex; flex-direction: column; gap: 1rem; }
+        .badge-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-featured { background: var(--accent-red); color: white; }
+        .badge-category { background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-color); }
+        .hero-title { font-size: clamp(1.75rem, 4vw, 3rem); line-height: 1.2; }
+        .hero-description { color: var(--text-secondary); font-size: 0.95rem; max-width: 500px; }
+        .hero-meta { color: var(--text-muted); font-size: 0.875rem; }
         .watch-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            color: black;
-            text-decoration: none;
-            padding: 0.875rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 500;
-            margin-top: 0.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: fit-content;
+            display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: black;
+            text-decoration: none; padding: 0.875rem 1.5rem; border-radius: 6px; font-weight: 500;
+            margin-top: 0.5rem; width: fit-content; transition: transform 0.2s;
         }
-
-        .watch-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
-        }
-
-        /* Pinned Section */
-        .pinned-section {
-            display: none;
-            padding: 2rem 0;
-        }
-
-        .pinned-section.active {
-            display: block;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.1rem;
-            color: var(--accent-gold);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pin-icon {
-            width: 18px;
-            height: 18px;
-        }
-
+        .watch-btn:hover { transform: translateY(-2px); }
+        
+        /* Pinned */
+        .pinned-section { display: none; padding: 2rem 0; }
+        .pinned-section.active { display: block; }
+        .section-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .section-header h2 { font-size: 1.1rem; color: var(--accent-gold); display: flex; align-items: center; gap: 0.5rem; }
+        .pin-icon { width: 18px; height: 18px; }
         .horizontal-scroll {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border-color) transparent;
+            display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem;
+            scrollbar-width: thin; scrollbar-color: var(--border-color) transparent;
         }
-
-        .horizontal-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .horizontal-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .horizontal-scroll::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
-        }
-
+        .horizontal-scroll::-webkit-scrollbar { height: 6px; }
+        .horizontal-scroll::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
         .pinned-card {
-            flex: 0 0 280px;
-            background: var(--bg-card);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid var(--accent-gold);
-            cursor: pointer;
-            transition: transform 0.2s;
+            flex: 0 0 280px; background: var(--bg-card); border-radius: 10px; overflow: hidden;
+            border: 2px solid var(--accent-gold); cursor: pointer; transition: transform 0.2s;
         }
-
-        .pinned-card:hover {
-            transform: scale(1.03);
-        }
-
-        .pinned-card .card-thumb {
-            aspect-ratio: 16/9;
-            overflow: hidden;
-        }
-
-        .pinned-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .pinned-card .card-info {
-            padding: 0.75rem;
-        }
-
-        .pinned-card .card-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Filter Bar */
-        .filter-section {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .filter-bar {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
+        .pinned-card:hover { transform: scale(1.03); }
+        .pinned-card .card-thumb { aspect-ratio: 16/9; overflow: hidden; }
+        .pinned-card img { width: 100%; height: 100%; object-fit: cover; }
+        .pinned-card .card-info { padding: 0.75rem; }
+        .pinned-card .card-title { font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        /* Filter */
+        .filter-section { padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); }
+        .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .filter-pill {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            white-space: nowrap;
+            background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);
+            padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.875rem; transition: all 0.2s;
         }
-
-        .filter-pill:hover {
-            background: var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .filter-pill.active {
-            background: var(--accent-red);
-            border-color: var(--accent-red);
-            color: white;
-        }
-
-        /* Video Grid */
-        .videos-section {
-            padding: 2rem 0 4rem;
-        }
-
-        .section-title {
-            font-size: 1.25rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-primary);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 1.5rem;
-        }
-
+        .filter-pill:hover { background: var(--border-color); color: var(--text-primary); }
+        .filter-pill.active { background: var(--accent-red); border-color: var(--accent-red); color: white; }
+        
+        /* Grid */
+        .videos-section { padding: 2rem 0 4rem; }
+        .section-title { font-size: 1.25rem; margin-bottom: 1.25rem; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
         .video-card {
-            background: var(--bg-card);
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
+            background: var(--bg-card); border-radius: 10px; overflow: hidden; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s; position: relative;
         }
-
-        .video-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-        }
-
-        .video-card.featured-card {
-            border: 2px solid var(--accent-red);
-        }
-
-        .video-card.pinned-card-grid {
-            border: 2px solid var(--accent-gold);
-        }
-
-        .card-thumbnail {
-            position: relative;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-        }
-
-        .card-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .video-card:hover .card-thumbnail img {
-            transform: scale(1.05);
-        }
-
+        .video-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        .video-card.featured-card { border: 2px solid var(--accent-red); }
+        .video-card.pinned-card-grid { border: 2px solid var(--accent-gold); }
+        .card-thumbnail { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+        .card-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .video-card:hover .card-thumbnail img { transform: scale(1.05); }
         .play-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s;
+            position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex;
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
         }
-
-        .video-card:hover .play-overlay {
-            opacity: 1;
+        .video-card:hover .play-overlay { opacity: 1; }
+        .play-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .play-icon svg { width: 20px; height: 20px; fill: var(--accent-red); margin-left: 3px; }
+        .new-badge { position: absolute; top: 8px; left: 8px; background: var(--accent-green); color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        .card-info { padding: 0.875rem; }
+        .card-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
+        .category-tag { background: var(--bg-secondary); color: var(--text-secondary); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
+        
+        /* Admin Section (hidden by default) */
+        .admin-section { display: none; background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 2rem 0; }
+        .admin-section.active { display: block; }
+        .admin-toggle {
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+            background: var(--accent-red); color: white; border: none; border-radius: 50%;
+            cursor: pointer; font-size: 1.5rem; z-index: 1000; display: flex; align-items: center; justify-content: center;
         }
-
-        .play-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .admin-form { max-width: 800px; margin: 0 auto; }
+        .admin-form h3 { margin-bottom: 1rem; color: var(--accent-gold); }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);
+            padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem;
         }
-
-        .play-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--accent-red);
-            margin-left: 3px;
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-red); }
+        .form-group textarea { resize: vertical; min-height: 60px; }
+        .checkbox-group { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        .checkbox-item { display: flex; align-items: center; gap: 0.5rem; }
+        .checkbox-item input { width: auto; }
+        .checkbox-item label { font-size: 0.875rem; color: var(--text-secondary); }
+        .admin-btns { display: flex; gap: 0.75rem; margin-top: 1rem; }
+        .btn {
+            padding: 0.625rem 1.25rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;
+            border: none; transition: all 0.2s;
         }
-
-        .new-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: var(--accent-green);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
+        .btn-primary { background: var(--accent-red); color: white; }
+        .btn-primary:hover { background: #a00d26; }
+        .btn-secondary { background: var(--border-color); color: var(--text-primary); }
+        .code-output {
+            background: #000; border: 1px solid var(--border-color); border-radius: 8px;
+            padding: 1rem; margin-top: 1rem; font-family: monospace; font-size: 0.8rem;
+            color: var(--text-secondary); white-space: pre-wrap; word-break: break-all;
+            max-height: 300px; overflow-y: auto;
         }
-
-        .card-info {
-            padding: 0.875rem;
-        }
-
-        .card-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .category-tag {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-        }
-
+        .copy-btn { background: var(--accent-green); color: white; }
+        
         /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-muted);
-        }
-
-        .empty-state h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .empty-state p {
-            font-size: 0.9rem;
-        }
-
+        .empty-state { text-align: center; padding: 4rem 2rem; color: var(--text-muted); }
+        .empty-state h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-secondary); }
+        
         /* Footer */
-        .footer {
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-logo {
-            font-size: 1.25rem;
-            color: var(--text-primary);
-        }
-
-        .footer-logo span {
-            color: var(--accent-red);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
+        .footer { border-top: 1px solid var(--border-color); padding: 2rem 4%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-logo { font-size: 1.25rem; }
+        .footer-logo span { color: var(--accent-red); }
+        .copyright { color: var(--text-muted); font-size: 0.875rem; }
+        
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .hero-thumbnail {
-                order: -1;
-            }
-
-            .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 1rem;
-            }
-
-            .pinned-card {
-                flex: 0 0 240px;
-            }
+            .hero-content { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-thumbnail { order: -1; }
+            .video-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+            .pinned-card { flex: 0 0 240px; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">Dhanedha <span>Movies</span></a>
+        <a href="#" class="logo">Dhanedha <span>Movies</span></a>
         <a href="https://www.youtube.com/@DhanedhaMovies" target="_blank" class="subscribe-btn">Subscribe</a>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="heroSection">
         <div class="container">
             <div class="hero-content">
@@ -536,9 +199,7 @@
                     <p class="hero-description" id="heroDescription"></p>
                     <p class="hero-meta" id="heroMeta"></p>
                     <a id="heroLink" href="#" target="_blank" class="watch-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                         Watch on YouTube
                     </a>
                 </div>
@@ -546,14 +207,12 @@
         </div>
     </section>
 
-    <!-- Pinned Section -->
+    <!-- Pinned -->
     <section class="pinned-section" id="pinnedSection">
         <div class="container">
             <div class="section-header">
                 <h2>
-                    <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 12V4H17V2H7V4H8V12L6 14V16H11.2V22H12.8V16H18V14L16 12Z"/>
-                    </svg>
+                    <svg class="pin-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 12V4H17V2H7V4H8V12L6 14V16H11.2V22H12.8V16H18V14L16 12Z"/></svg>
                     Pinned
                 </h2>
             </div>
@@ -561,7 +220,7 @@
         </div>
     </section>
 
-    <!-- Filter Bar -->
+    <!-- Filter -->
     <section class="filter-section">
         <div class="container">
             <div class="filter-bar" id="filterBar">
@@ -570,16 +229,11 @@
         </div>
     </section>
 
-    <!-- Video Grid -->
+    <!-- Videos Grid -->
     <section class="videos-section">
         <div class="container">
             <h2 class="section-title">All Videos</h2>
-            <div class="video-grid" id="videoGrid">
-                <div class="empty-state">
-                    <h3>No Videos Yet</h3>
-                    <p>Visit the admin panel to add your first video.</p>
-                </div>
-            </div>
+            <div class="video-grid" id="videoGrid"></div>
         </div>
     </section>
 
@@ -589,13 +243,101 @@
         <p class="copyright">&copy; 2024 Dhanedha Movies</p>
     </footer>
 
+    <!-- Admin Toggle Button -->
+    <button class="admin-toggle" onclick="toggleAdmin()" title="Add Video">+</button>
+
+    <!-- Admin Section -->
+    <section class="admin-section" id="adminSection">
+        <div class="container">
+            <div class="admin-form">
+                <h3>Add New Video</h3>
+                <form id="addForm" onsubmit="generateCode(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" id="inputTitle" required placeholder="Video title">
+                        </div>
+                        <div class="form-group">
+                            <label>YouTube URL *</label>
+                            <input type="url" id="inputUrl" required placeholder="https://youtube.com/watch?v=...">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" id="inputCategory" placeholder="Movie, Song, Trailer...">
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Date</label>
+                            <input type="date" id="inputDate">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" id="inputDuration" placeholder="2h 10m">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Description</label>
+                        <textarea id="inputDesc" placeholder="Optional description..."></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inputFeatured">
+                            <label for="inputFeatured">Featured (shows in hero)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inputPinned">
+                            <label for="inputPinned">Pinned (shows in top strip)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inputNew" checked>
+                            <label for="inputNew">New badge</label>
+                        </div>
+                    </div>
+                    <div class="admin-btns">
+                        <button type="submit" class="btn btn-primary">Generate Code</button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleAdmin()">Close</button>
+                    </div>
+                </form>
+                <div id="codeOutput" style="display:none;">
+                    <p style="color: var(--text-secondary); margin: 1rem 0 0.5rem; font-size: 0.875rem;">
+                        Copy this code and add to the <strong>VIDEOS DATA</strong> section in the script below:
+                    </p>
+                    <div class="code-output" id="codeBlock"></div>
+                    <button class="btn copy-btn" onclick="copyCode()" style="margin-top: 0.5rem;">Copy to Clipboard</button>
+                </div>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">
+                        <strong>Instructions:</strong> Paste the generated code into the VIDEOS DATA array in the script section of this file, then save and re-deploy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
-        // Configuration
-        const STORAGE_KEY = 'dm_videos';
-        let allVideos = [];
+        // ============================================
+        // VIDEOS DATA - ADD YOUR VIDEOS HERE
+        // ============================================
+        const videos = [
+            // Example video (remove or edit this):
+            {
+                id: "1",
+                title: "Sample Movie",
+                url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+                videoId: "dQw4w9WgXcQ",
+                category: "Movie",
+                date: "2024-01-15",
+                duration: "2h 30m",
+                description: "This is a sample video. Replace with your actual YouTube videos.",
+                featured: true,
+                pinned: false,
+                isNew: false
+            }
+            // Add more videos here, copy format above
+        ];
+        // ============================================
+
         let currentFilter = 'all';
 
-        // YouTube URL parser - extracts video ID from various YouTube URL formats
         function extractVideoId(url) {
             if (!url) return null;
             const patterns = [
@@ -612,41 +354,23 @@
             return null;
         }
 
-        // Get thumbnail URL from video ID
         function getThumbnailUrl(videoId) {
             return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         }
 
-        // Load videos from localStorage
-        function loadVideos() {
-            try {
-                const data = localStorage.getItem(STORAGE_KEY);
-                allVideos = data ? JSON.parse(data) : [];
-            } catch (e) {
-                allVideos = [];
-            }
-        }
-
-        // Get unique categories from videos
         function getCategories() {
-            const categories = new Set(allVideos.map(v => v.category).filter(Boolean));
+            const categories = new Set(videos.map(v => v.category).filter(Boolean));
             return Array.from(categories).sort();
         }
 
-        // Render filter pills
         function renderFilters() {
             const container = document.getElementById('filterBar');
             const categories = getCategories();
-            
             let html = `<button class="filter-pill ${currentFilter === 'all' ? 'active' : ''}" data-category="all">All</button>`;
-            
             categories.forEach(cat => {
                 html += `<button class="filter-pill ${currentFilter === cat ? 'active' : ''}" data-category="${cat}">${cat}</button>`;
             });
-            
             container.innerHTML = html;
-            
-            // Add click handlers
             container.querySelectorAll('.filter-pill').forEach(pill => {
                 pill.addEventListener('click', () => {
                     currentFilter = pill.dataset.category;
@@ -656,16 +380,13 @@
             });
         }
 
-        // Render Hero Section with featured video
         function renderHero() {
-            const featured = allVideos.find(v => v.featured);
+            const featured = videos.find(v => v.featured);
             const heroSection = document.getElementById('heroSection');
-            
             if (!featured) {
                 heroSection.classList.remove('active');
                 return;
             }
-            
             heroSection.classList.add('active');
             document.getElementById('heroThumbnail').src = getThumbnailUrl(featured.videoId);
             document.getElementById('heroCategory').textContent = featured.category || 'Movie';
@@ -675,64 +396,40 @@
             document.getElementById('heroLink').href = featured.url;
         }
 
-        // Render Pinned Section
         function renderPinned() {
-            const pinned = allVideos.filter(v => v.pinned);
+            const pinned = videos.filter(v => v.pinned);
             const section = document.getElementById('pinnedSection');
             const container = document.getElementById('pinnedContainer');
-            
             if (pinned.length === 0) {
                 section.classList.remove('active');
                 return;
             }
-            
             section.classList.add('active');
             container.innerHTML = pinned.map(video => `
                 <div class="pinned-card" onclick="openVideo('${video.url}')">
-                    <div class="card-thumb">
-                        <img src="${getThumbnailUrl(video.videoId)}" alt="${video.title}">
-                    </div>
-                    <div class="card-info">
-                        <p class="card-title">${video.title}</p>
-                    </div>
+                    <div class="card-thumb"><img src="${getThumbnailUrl(video.videoId)}" alt="${video.title}"></div>
+                    <div class="card-info"><p class="card-title">${video.title}</p></div>
                 </div>
             `).join('');
         }
 
-        // Render Video Grid
         function renderGrid() {
             const container = document.getElementById('videoGrid');
-            
-            if (allVideos.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <h3>No Videos Yet</h3>
-                        <p>Visit the admin panel to add your first video.</p>
-                    </div>
-                `;
+            if (videos.length === 0) {
+                container.innerHTML = `<div class="empty-state"><h3>No Videos Yet</h3><p>Click the + button to add videos.</p></div>`;
                 return;
             }
-            
-            let videos = currentFilter === 'all' 
-                ? [...allVideos] 
-                : allVideos.filter(v => v.category === currentFilter);
-            
-            // Sort: Pinned first, then by date (newest first)
-            videos.sort((a, b) => {
+            let displayVideos = currentFilter === 'all' ? [...videos] : videos.filter(v => v.category === currentFilter);
+            displayVideos.sort((a, b) => {
                 if (a.pinned && !b.pinned) return -1;
                 if (!a.pinned && b.pinned) return 1;
                 return new Date(b.date || 0) - new Date(a.date || 0);
             });
-            
-            container.innerHTML = videos.map(video => `
+            container.innerHTML = displayVideos.map(video => `
                 <div class="video-card ${video.featured ? 'featured-card' : ''} ${video.pinned ? 'pinned-card-grid' : ''}" onclick="openVideo('${video.url}')">
                     <div class="card-thumbnail">
                         <img src="${getThumbnailUrl(video.videoId)}" alt="${video.title}">
-                        <div class="play-overlay">
-                            <div class="play-icon">
-                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
+                        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                         ${video.isNew ? '<span class="new-badge">New</span>' : ''}
                     </div>
                     <div class="card-info">
@@ -746,22 +443,64 @@
             `).join('');
         }
 
-        // Open video in new tab
         function openVideo(url) {
             window.open(url, '_blank');
         }
 
-        // Initialize
-        function init() {
-            loadVideos();
-            renderHero();
-            renderPinned();
-            renderFilters();
-            renderGrid();
+        function toggleAdmin() {
+            document.getElementById('adminSection').classList.toggle('active');
         }
 
-        // Run on load
-        init();
+        function generateCode(e) {
+            e.preventDefault();
+            const url = document.getElementById('inputUrl').value;
+            const videoId = extractVideoId(url);
+            if (!videoId) {
+                alert('Could not extract video ID. Check the YouTube URL.');
+                return;
+            }
+            const videoData = {
+                id: Date.now().toString(),
+                title: document.getElementById('inputTitle').value,
+                url: url,
+                videoId: videoId,
+                category: document.getElementById('inputCategory').value,
+                date: document.getElementById('inputDate').value,
+                duration: document.getElementById('inputDuration').value,
+                description: document.getElementById('inputDesc').value,
+                featured: document.getElementById('inputFeatured').checked,
+                pinned: document.getElementById('inputPinned').checked,
+                isNew: document.getElementById('inputNew').checked
+            };
+            const code = `        {
+            id: "${videoData.id}",
+            title: "${videoData.title.replace(/"/g, '\\"')}",
+            url: "${videoData.url}",
+            videoId: "${videoData.videoId}",
+            category: "${videoData.category}",
+            date: "${videoData.date}",
+            duration: "${videoData.duration}",
+            description: "${videoData.description.replace(/"/g, '\\"')}",
+            featured: ${videoData.featured},
+            pinned: ${videoData.pinned},
+            isNew: ${videoData.isNew}
+        }`;
+            document.getElementById('codeBlock').textContent = code + ',';
+            document.getElementById('codeOutput').style.display = 'block';
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeBlock').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Copied! Paste this into the VIDEOS DATA array in the script.');
+            });
+        }
+
+        // Initialize
+        renderHero();
+        renderPinned();
+        renderFilters();
+        renderGrid();
     </script>
 </body>
 </html>
